@@ -487,6 +487,9 @@ html[data-mode="en"] .tk .adm .kk,html[data-mode="en"] .mukick i{display:none}
 .gl-al span{line-height:1.8}
 .ab-tm{display:inline-block;margin-top:10px;background:var(--ac);color:#141210;font-weight:900;text-decoration:none;border-radius:99px;padding:12px 24px}
 .ab-tm:hover{background:#f4efe8}
+.ab-lk{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:10px}.ab-lk .ab-tm{margin-top:0}
+.ab-ig{display:inline-flex;align-items:center;gap:8px;border:2px solid #f4efe8;color:#f4efe8;font-weight:900;text-decoration:none;border-radius:99px;padding:10px 22px}
+.ab-ig:hover,.ab-ig:focus-visible{background:#f4efe8;color:#141210}
 footer a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 @media(max-width:760px){.wm .wm-t{font-size:14px}.wm .wm-t2{font-size:14px}.gl-al{flex-direction:column;gap:4px}}
 .gl-tl ol{position:relative}
@@ -950,7 +953,7 @@ var img=/^data:image\//.test(p.photo||'')?p.photo:'img/founder.jpg';
 var ms=String(p.milestones||'').split('\n').map(function(l){var k=l.indexOf('|');return k<0?null:[l.slice(0,k).trim(),l.slice(k+1).trim()]}).filter(Boolean);
 el.innerHTML='<div class="ab-ph"><div class="ab-fr"><img src="'+esc(img)+'" alt="'+esc(p.name)+'"></div><span class="ab-tag">'+esc(p.tag||'Founder')+'</span></div>'
 +'<div class="ab-tx"><p class="ab-k">'+tr('ab_kick')+'</p><h2 class="a">'+nm+'</h2>'+(p.role?'<p class="ab-r">'+esc(p.role)+'</p>':'')
-+paras(p.bio).map(function(x){return'<p class="ab-b">'+fmt(x)+'</p>'}).join('')+(p.locations?'<div class="ab-loc"><p class="ab-k">'+tr('ab_loc')+'</p><ul>'+String(p.locations).split('|').map(function(s){s=s.trim();return s?'<li>'+esc(s)+'</li>':''}).join('')+'</ul>'+(p.loc_text?'<p class="ab-lt">'+fmt(p.loc_text)+'</p>':'')+'</div>':'')+'<a class="ab-tm" href="https://twomiles.net" target="_blank" rel="noopener">'+tr('tm_link')+' ↗</a></div>'
++paras(p.bio).map(function(x){return'<p class="ab-b">'+fmt(x)+'</p>'}).join('')+(p.locations?'<div class="ab-loc"><p class="ab-k">'+tr('ab_loc')+'</p><ul>'+String(p.locations).split('|').map(function(s){s=s.trim();return s?'<li>'+esc(s)+'</li>':''}).join('')+'</ul>'+(p.loc_text?'<p class="ab-lt">'+fmt(p.loc_text)+'</p>':'')+'</div>':'')+'<div class="ab-lk"><a class="ab-tm" href="https://twomiles.net" target="_blank" rel="noopener">'+tr('tm_link')+' ↗</a>'+(function(){var u=String(p.instagram||'').trim().replace(/^@/,'').replace(/^https?:\/\/(www\.)?instagram\.com\//,'').replace(/\/.*$/,'');return u?'<a class="ab-ig" href="https://www.instagram.com/'+encodeURIComponent(u)+'/" target="_blank" rel="noopener" aria-label="Instagram @'+esc(u)+'"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>@'+esc(u)+' ↗</a>':''})()+'</div></div>'
 +(ms.length?'<div class="ab-ms"><p class="ab-k">'+tr('ab_path')+'</p><ol>'+ms.map(function(m){return'<li><b>'+esc(m[0])+'</b><span>'+esc(m[1])+'</span></li>'}).join('')+'</ol></div>':'')}
 function renderBooks(){var el=$('m-books'),B=(DATA.books||[]).filter(vis);$('books').hidden=!B.length;
 el.innerHTML=B.map(function(b,i){return'<article class="bk"><button class="bk-cv" type="button" data-book="'+i+'" aria-label="'+esc(b.title)+'"><img src="'+esc(b.cover)+'" alt=""></button><div class="bk-tx"><p class="bk-y">'+esc(b.year||'')+'</p><h3>'+esc(b.title)+'</h3>'+(b.sub?'<p class="bk-s">'+esc(b.sub)+'</p>':'')+(b.blurb?'<p class="bk-b">'+esc(b.blurb)+'</p>':'')+'<button class="bk-go" type="button" data-book="'+i+'">'+tr('bk_read')+' →</button><p class="bk-l">日本語 / English</p></div></article>'}).join('')}
